@@ -1,9 +1,9 @@
 package Number::RGB;
-# $Id: RGB.pm,v 1.1 2004/03/06 00:38:42 cwest Exp $
+# $Id: RGB.pm,v 1.2 2004/03/06 16:17:02 cwest Exp $
 use strict;
 
 use vars qw[$VERSION $CONSTRUCTOR_SPEC];
-$VERSION = (qw$Revision: 1.1 $)[1];
+$VERSION = (qw$Revision: 1.2 $)[1];
 
 =head1 NAME
 
@@ -154,7 +154,7 @@ include C<'A'..'F'> will be uppercased.
 
 =item C<as_string()>
 
-Returns a string representation of the tuple.  For example, I<black>
+Returns a string representation of the tuple.  For example, I<white>
 would be the string C<255,255,255>.
 
 =cut
