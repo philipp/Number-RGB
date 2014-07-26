@@ -1,9 +1,9 @@
 package Number::RGB;
-# $Id: RGB.pm,v 1.2 2004/03/06 16:17:02 cwest Exp $
+# $Id: RGB.pm,v 1.3 2014/07/25 22:31:18 philipp Exp $
 use strict;
 
 use vars qw[$VERSION $CONSTRUCTOR_SPEC];
-$VERSION = (qw$Revision: 1.2 $)[1];
+$VERSION = (qw$Revision: 1.3 $)[1];
 
 =head1 NAME
 
@@ -105,6 +105,8 @@ sub new {
 	my %rgb;
 	if ( defined $params{rgb} ) {
 		@rgb{qw[r g b]} = @{$params{rgb}};
+	} elsif ( defined $params{rgb1} ) {
+		return $class->new(rgb => [(@{$params{rgb1}}[0])x3]);
 	} elsif ( defined $params{rgb_number} ) {
 		return $class->new(rgb => [($params{rgb_number})x3]);
 	} elsif ( defined $params{hex} ) {
@@ -229,6 +231,15 @@ $CONSTRUCTOR_SPEC = {
         	'three elements'    => sub { 3 == @{$_[0]} },
         	'only digits'       => sub { 0 == grep /\D/, @{$_[0]} },
         	'between 0 and 255' => sub { 3 == grep { $_ >= 0 && $_ <= 255 } @{$_[0]} },
+        },
+    },
+    rgb1 => {
+        type      => ARRAYREF,
+        optional  => 1,
+        callbacks => {
+        	'one element'       => sub { 1 == @{$_[0]} },
+        	'only digits'       => sub { 0 == grep /\D/, @{$_[0]} },
+        	'between 0 and 255' => sub { 1 == grep { $_ >= 0 && $_ <= 255 } @{$_[0]} },
         },
     },
     rgb_number => {
